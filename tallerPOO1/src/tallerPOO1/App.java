@@ -29,19 +29,10 @@ public class App {
 			String verificacion=verificadorUsuario(usu, contra); 
 			switch(verificacion) {
 			case "1":
-				System.out.println();
-				System.out.println("Acceso correcto!");
-				System.out.println();
-				System.out.println("Bienvenido "+usu+"!");
-				System.out.println();
+				System.out.println("\r\n"+"Acceso correcto!"+"\r\n"+"\r\n"+"Bienvenido "+usu+"!");
 				String menuU="";
 				while(!menuU.equals("5")){
-				System.out.println("Que deseas realizar?\r\n"
-						+ "1) Registrar actividad.\r\n"
-						+ "2) Modificar actividad.\r\n"
-						+ "3) Eliminar actividad.\r\n"
-						+ "4) Cambiar contraseña.\r\n"
-						+ "5) Salir.");
+				System.out.println("\r\n"+"Que deseas realizar?\r\n"+ "1) Registrar actividad.\r\n"+ "2) Modificar actividad.\r\n"+ "3) Eliminar actividad.\r\n"+ "4) Cambiar contraseña.\r\n"+ "5) Salir.");
 				System.out.print(">>> ");
 				menuU= respuesta.nextLine();
 				switch(menuU) {
@@ -52,37 +43,29 @@ public class App {
 					eleccionUsuario2(usu);
 					break;
 				case "3":
+					eleccionUsuario3(usu);
 					break;
 				case "4":
+					eleccionUsuario4(usu);
 					break;
 				case "5":
-					System.out.println();
-					System.out.println("Cerrando el menu de usuario.");
-					System.out.println();
+					System.out.println("\r\n"+"Cerrando el menu de usuario."+"\r\n");
 					break;
 				default:
-					System.out.println();
-					System.out.println("seleccione una opcion valida.");
-					System.out.println();
+					System.out.println("\r\n"+"seleccione una opcion valida."+"\r\n");
 					break;
 				}
 				}
 				break;
 			case "2":
-				System.out.println();
-				System.out.println("Usuario incorrecto.");
-				System.out.println();
+				System.out.println("\r\n"+"Usuario incorrecto."+"\r\n");
 				break;
 			case "3":
-				System.out.println();
-				System.out.println("Contraseña incorrecta.");
-				System.out.println();
+				System.out.println("\r\n"+"Contraseña incorrecta."+"\r\n");
 				break;
 			case "4": 
-				System.out.println();
-				System.out.println("Usuario incorrecto y");
-				System.out.println("Contraseña incorrecta.");
-				System.out.println();
+				System.out.println("\r\n"+"Usuario incorrecto y");
+				System.out.println("Contraseña incorrecta."+"\r\n");
 				break;
 			}
 					
@@ -96,8 +79,8 @@ public class App {
 			break;	
 			
 		default:
-			System.out.println("seleccione una opcion valida.");
-			System.out.println();
+			System.out.println("\r\n"+"seleccione una opcion valida."+"\r\n");
+	
 			break;		
 			}
 		
@@ -179,26 +162,23 @@ public class App {
 	}
 	
 	public static void eleccionUsuario1(String usu) {
+		System.out.println();
 		System.out.print("Ingrese fecha(dd/mm/aaaa): ");
 		String fecha= respuesta.nextLine();
 		if(fechaCorrecta(fecha)){
 		System.out.print("Ingrese horas de ocio: ");
 		String horasDeOcio= respuesta.nextLine();
-		if(horasCorrectas(horasDeOcio)) {
+		if(numeroCorrecto(horasDeOcio)) {
 		System.out.print("Ingrese actividad: ");
 		String actividad= respuesta.nextLine();
 		
 		
 				matrizRegistros=registrarActividad(usu, fecha, horasDeOcio , actividad);
 			}else {
-				System.out.println();
-				System.out.println("Error: La cadena no es un número entero válido.");
-				System.out.println();
+				System.out.println("\r\n"+"Error: La cadena no es un número entero válido.");
 			}
 		}else {
-			System.out.println();
-			System.out.println("Error: la fecha ingresada no es valida.");
-			System.out.println();
+			System.out.println("\r\n"+"Error: la fecha ingresada no es valida.");
 		}
 	}
 	
@@ -206,21 +186,21 @@ public class App {
 		boolean correcto= false;
 		try {
 		String[] partes= fecha.split("/");
-		if(Integer.valueOf(partes[0])<=31 || Integer.valueOf(partes[0])>=1) {
+		if(Integer.valueOf(partes[0])<=31 && Integer.valueOf(partes[0])>=1) {
 			if(Integer.valueOf(partes[1])==3 || Integer.valueOf(partes[1])==1 || Integer.valueOf(partes[1])==5 || Integer.valueOf(partes[1])==7 || Integer.valueOf(partes[1])==10 || Integer.valueOf(partes[1])==8 || Integer.valueOf(partes[1])==12) {
 				if(Integer.valueOf(partes[2])<2099) {
 					correcto=true;
 				}
 			}
 		}
-		if(Integer.valueOf(partes[0])<=30 || Integer.valueOf(partes[0])>=1) {
+		if(Integer.valueOf(partes[0])<=30 && Integer.valueOf(partes[0])>=1) {
 			if(Integer.valueOf(partes[1])==4 || Integer.valueOf(partes[1])==6 || Integer.valueOf(partes[1])==9 || Integer.valueOf(partes[1])==11) {
 				if(Integer.valueOf(partes[2])<2099) {
 					correcto=true;
 				}
 			}
 		}
-		if(Integer.valueOf(partes[0])<=29 || Integer.valueOf(partes[0])>=1) {
+		if(Integer.valueOf(partes[0])<=29 && Integer.valueOf(partes[0])>=1) {
 			if(Integer.valueOf(partes[1])==2) {
 				if(Integer.valueOf(partes[2])<2099) {
 					correcto=true;
@@ -236,19 +216,24 @@ public class App {
 		String fechacorrecta="";
 		if(Integer.valueOf(fechapartes[0])<10 && Integer.valueOf(fechapartes[1])<10) {
 			fechacorrecta= "0" + String.valueOf(fechapartes[0]) +"/"+ "0"+String.valueOf(fechapartes[1]) + "/"+String.valueOf(fechapartes[2]);
+			return fechacorrecta;
 		}else if(Integer.valueOf(fechapartes[0])<10 && Integer.valueOf(fechapartes[1])>=10) {
 			fechacorrecta= "0" + String.valueOf(fechapartes[0]) +"/"+String.valueOf(fechapartes[1]) + "/"+String.valueOf(fechapartes[2]);
+			return fechacorrecta;
 		}else if(Integer.valueOf(fechapartes[0])>=10 && Integer.valueOf(fechapartes[1])<10) {
 			fechacorrecta=String.valueOf(fechapartes[0]) +"/"+ "0"+String.valueOf(fechapartes[1]) + "/"+String.valueOf(fechapartes[2]);
+			return fechacorrecta;
+		}else {
+			fechacorrecta=fecha;
 		}
 		
 		return fechacorrecta;
 	}
 	
-	public static boolean horasCorrectas(String hora) {
+	public static boolean numeroCorrecto(String hora) {
 		boolean horasValidas= false;
 		try {
-			 int valorHora = Integer.parseInt(hora); 
+			 int valorHora = Integer.valueOf(hora); 
 			 if(valorHora>0) {
 				 horasValidas=true;
 			 }
@@ -289,20 +274,19 @@ public class App {
 			}
 			
 		}
-		System.out.println();
-		System.out.println("Actividad creada con exito!");
-		System.out.println();
+		System.out.println("\r\n"+"Actividad creada con exito!");
 		
 		return newMatriz;
 	}
 	
 	public static void eleccionUsuario2(String usu) { 
+		System.out.println();
 		System.out.println("Cual actividad deseas modificar?");
 		System.out.println();
 		System.out.println("0) Regresar.");
 		int j=1;
 		for(int i=0;i<matrizRegistros.length;i++) {
-			if(matrizRegistros[i][0].equals(usu)) {
+			if(usu.equals(matrizRegistros[i][0])) {
 			System.out.println((j)+") "+matrizRegistros[i][0]+";"+matrizRegistros[i][1]+";"+matrizRegistros[i][2]+";"+matrizRegistros[i][3]);
 			j++;
 			}
@@ -312,55 +296,58 @@ public class App {
 		try {
 			int id= Integer.valueOf(indice);
 		
-		if(!indice.equals("0") && 0<id && id<j) {
-			System.out.println("System.out.println(\"Que deseas modificar?\");\r\n"
-					+ "		System.out.println();\r\n"
-					+ "		System.out.println(\"0) Regresar.\");\r\n"
-					+ "		System.out.println(\"1) Fecha\");\r\n"
-					+ "		System.out.println(\"2) Duracion\");\r\n"
-					+ "		System.out.println(\"3) Tipo de actividad\");");	
+		if(!indice.equals("0") && -1<id && id<j) {
+			System.out.println("Que deseas modificar?\r\n"+ "\r\n"+ "0) Regresar.\r\n"+ "1) Fecha\r\n"+ "2) Duración\r\n"+ "3) Tipo de actividad");	
 			System.out.print(">>> ");
 			String indmodificacion= respuesta.nextLine();
 			if(!indmodificacion.equals("0")) { 
-					printModificarRegistro(indmodificacion);
-					if(indmodificacion.equals("1") && indmodificacion.equals("2") && indmodificacion.equals("3")) {
+				switch(indmodificacion) {
+					case "1":
+							System.out.print("\r\n"+"Ingrese nueva fecha (dd/mm/aaaa): ");
+							break;
+					case "2":
+						System.out.print("\r\n"+"Ingrese nuevo tiempo de ocio: ");
+						break;
+					case "3":
+						System.out.print("\r\n"+"Ingrese nuevo tipo de actividad:");
+						break;
+
+					}
+					if(indmodificacion.equals("1") || indmodificacion.equals("2") || indmodificacion.equals("3")) {
 						String modificacion= respuesta.nextLine();
 						if(!modificacion.equals("0")) {
 							if(indmodificacion.equals("1")){
 								if(fechaCorrecta(modificacion)) {
 									modificarRegistros(indice, indmodificacion,correccionFecha(modificacion), usu);
+								}else {
+									System.out.println("\r\n"+"Error: La cadena no es un número entero válido.");
 								}
 							}else if(indmodificacion.equals("2")) { 
-								if(horasCorrectas(modificacion)) {
+								if(numeroCorrecto (modificacion)) {
 									modificarRegistros(indice, indmodificacion, modificacion, usu);
+								}else {
+									System.out.println("\r\n"+"Error: La cadena no es un número entero válido.");
 								}
 							}else if(indmodificacion.equals("3")){
 								modificarRegistros(indice, indmodificacion, modificacion, usu);
 							}
 					}
-				}else {
-					System.out.println();
-					System.out.println("Error: La cadena no es un número entero válido.");
-					System.out.println();
+				}else{
+					System.out.println("\r\n"+"Error: La cadena no es un número entero válido.");
 				}
-			}else {
-				System.out.println();
-				System.out.println("Error: La cadena no es un número entero válido.");
-				System.out.println();
+					
+			}else if(!indmodificacion.equals("0")){
+				System.out.println("\r\n"+"Error: La cadena no es un número entero válido.");
 			}
-		}else {
-			System.out.println();
-			System.out.println("Error: La cadena no es un número entero válido.");
-			System.out.println();
+			
+		}else if(!indice.equals("0")){
+			System.out.println("\r\n"+"Error: La cadena no es un número entero válido.");
 			
 		}
 		}catch(NumberFormatException e) {
-			System.out.println();
-			System.out.println("Error: La cadena no es un número entero válido.");
-			System.out.println();
+			System.out.println("\r\n"+"Error: La cadena no es un número entero válido.");
 		}
 	}
-	
 	
 	public static void modificarRegistros(String n,String m ,String modificacion ,String usuario) {
 		try {
@@ -372,7 +359,8 @@ public class App {
 				j++;
 				if(j==indice) {
 				matrizRegistros[i][indModificacion]=modificacion;
-				System.out.println("Actividad modificada con exito!");
+				System.out.println("\r\n"+"Actividad modificada con exito!");
+				
 				}
 				
 			}
@@ -380,39 +368,103 @@ public class App {
 		}
 		
 		}catch(NumberFormatException e) {
-			System.out.println("Error: La cadena no es un número entero válido.");
+			System.out.println("\r\n"+"Error: La cadena no es un número entero válido.");
 		}	
 	}
 	
-	public static void printModificarRegistro(String indModificacion) {
-		
-		switch(indModificacion) {
-		case "1":
-				System.out.print("Ingrese nueva fecha (dd/mm/aaaa): ");
-				break;
-		case "2":
-			System.out.print("Ingrese nuevo tiempo de ocio: ");
-			break;
-		case "3":
-			System.out.print("Ingrese nuevo tipo de actividad:");
-			break;
-
-		}
-		
-	}
-	
-	public static void printModificarIndice(String usuario) {
-		System.out.println("Cual actividad deseas modificar?");
+	public static void eleccionUsuario3(String usu) {
+		System.out.println();
+		System.out.println("Cual actividad deseas eliminar?");
 		System.out.println();
 		System.out.println("0) Regresar.");
 		int j=1;
 		for(int i=0;i<matrizRegistros.length;i++) {
-			if(matrizRegistros[i][0].equals(usuario)) {
+			if(usu.equals(matrizRegistros[i][0])) {
 			System.out.println((j)+") "+matrizRegistros[i][0]+";"+matrizRegistros[i][1]+";"+matrizRegistros[i][2]+";"+matrizRegistros[i][3]);
 			j++;
 			}
 		}
 		System.out.print(">>> ");
+		String indice= respuesta.nextLine();
+		if(numeroCorrecto(indice)){
+		matrizRegistros= borrarRegistros(indice, usu);
+		
+		}
+		
+		
 	}
+	
+	public static String[][] borrarRegistros(String n,String usuario) {
+		String[][] newMatriz= new String[matrizRegistros.length-1][4];
+		try {
+		int indice= Integer.valueOf(n); 
+		int j=0;
+		int x=0;
+		for(int i=0;i<matrizRegistros.length;i++) {
+			if(usuario.equals(matrizRegistros[i][0])) {
+				j++;
+				if(j==indice) {
+					x=i;
+				}
+				if(j!=indice && i!=matrizRegistros.length-1) {
+				newMatriz[i][0]= matrizRegistros[i][0];
+				newMatriz[i][1]= matrizRegistros[i][1];
+				newMatriz[i][2]= matrizRegistros[i][2];
+				newMatriz[i][3]= matrizRegistros[i][3];
+				}else if(j!=indice && i==matrizRegistros.length-1) {
+					newMatriz[x][0]= matrizRegistros[i][0];
+					newMatriz[x][1]= matrizRegistros[i][1];
+					newMatriz[x][2]= matrizRegistros[i][2];
+					newMatriz[x][3]= matrizRegistros[i][3];
+					
+				}
+			}
+			if(!usuario.equals(matrizRegistros[i][0]) &&  i!=matrizRegistros.length-1){
+				newMatriz[i][0]= matrizRegistros[i][0];
+				newMatriz[i][1]= matrizRegistros[i][1];
+				newMatriz[i][2]= matrizRegistros[i][2];
+				newMatriz[i][3]= matrizRegistros[i][3];
+			}else if(!usuario.equals(matrizRegistros[i][0]) &&  i==matrizRegistros.length-1) {
+				newMatriz[x][0]= matrizRegistros[i][0];
+				newMatriz[x][1]= matrizRegistros[i][1];
+				newMatriz[x][2]= matrizRegistros[i][2];
+				newMatriz[x][3]= matrizRegistros[i][3];
+				
+				
+			}
+			
+		
+		}
+		
+		}catch(NumberFormatException e) {
+			System.out.println("\r\n"+"Error: La cadena no es un número entero válido.");
+		}
+		System.out.print("\r\n"+ "Actividad borrada con exito!");
+		return newMatriz;
+	}
+		
+	public static void eleccionUsuario4(String usu) {
+		System.out.print("\r\n"+ "Ingrese nueva contraseña: ");
+		String contraN1= respuesta.nextLine();
+		System.out.print("\r\n"+ "Confirme la nueva contraseña: ");
+		String contraN2= respuesta.nextLine();
+		if(contraN1.equals(contraN2)) {
+			cambiarContraseña(usu, contraN1);
+		}
+	}
+	
+	public static void cambiarContraseña(String usu, String contraseña) {
+		for(int i=0;i<matrizUsuario.length;i++) {
+			if(usu.equals(matrizUsuario[i][0]) && matrizUsuario[i][0]!=null) {
+				matrizUsuario[i][1]=contraseña;
+				System.out.println("\r\n"+"Contraseña modificada con exito!");
+			}else {
+				System.out.println("\r\n"+"Error: la contraseñas no coincide.");
+			}
+			
+ 			
+		}
+	}
+	
 	
 }
