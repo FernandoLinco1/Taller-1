@@ -116,6 +116,33 @@ public class App {
 		
 		}
 		
+		try {
+		       BufferedWriter bw = new BufferedWriter(new FileWriter("Usuario.txt"));
+		       for(int i=0;i<matrizUsuario.length;i++) {
+		        	 bw.write(matrizUsuario[i][0]+";"+matrizUsuario[i][1]);
+				     bw.newLine();
+		       }
+		       bw.close();
+
+		    } catch (IOException e) {
+		        System.out.println("Error");
+		    }
+		try {
+		       BufferedWriter bw = new BufferedWriter(new FileWriter("Registros.txt"));
+		       for(int i=0;i<matrizRegistros.length;i++) {
+		    	   if(i!=matrizRegistros.length-1) {
+		        	 bw.write(matrizRegistros[i][0]+";"+matrizRegistros[i][1]+";"+matrizRegistros[i][2]+";"+matrizRegistros[i][3]);
+				     bw.newLine();
+		    	   }else{
+		    		   bw.write(matrizRegistros[i][0]+";"+matrizRegistros[i][1]+";"+matrizRegistros[i][2]+";"+matrizRegistros[i][3]); 
+		    	   }
+		       }
+		       bw.close();
+
+		    } catch (IOException e) {
+		        System.out.println("Error");
+		    }
+		
 	}
 	
 	public static String[][] crearMatriz(String texto) {
@@ -242,13 +269,13 @@ public class App {
 	public static String correccionFecha(String fecha) {
 		String[] fechapartes= fecha.split("/");
 		String fechacorrecta="";
-		if(Integer.valueOf(fechapartes[0])<10 && Integer.valueOf(fechapartes[1])<10) {
+		if(Integer.valueOf(fechapartes[0])<10 && Integer.valueOf(fechapartes[1])<10 && !fechapartes[0].equals("01") && !fechapartes[0].equals("02") && !fechapartes[0].equals("03") && !fechapartes[0].equals("04") && !fechapartes[0].equals("05") && !fechapartes[0].equals("06") && !fechapartes[0].equals("07") && !fechapartes[0].equals("08") && !fechapartes[0].equals("09") && !fechapartes[1].equals("01") && !fechapartes[1].equals("02") && !fechapartes[1].equals("03") && !fechapartes[1].equals("04") && !fechapartes[1].equals("05") && !fechapartes[1].equals("06") && !fechapartes[1].equals("07") && !fechapartes[1].equals("08") && !fechapartes[1].equals("09")) {
 			fechacorrecta= "0" + String.valueOf(fechapartes[0]) +"/"+ "0"+String.valueOf(fechapartes[1]) + "/"+String.valueOf(fechapartes[2]);
 			return fechacorrecta;
-		}else if(Integer.valueOf(fechapartes[0])<10 && Integer.valueOf(fechapartes[1])>=10) {
+		}else if(Integer.valueOf(fechapartes[0])<10 && Integer.valueOf(fechapartes[1])>=10 && !fechapartes[0].equals("01") && !fechapartes[0].equals("02") && !fechapartes[0].equals("03") && !fechapartes[0].equals("04") && !fechapartes[0].equals("05") && !fechapartes[0].equals("06") && !fechapartes[0].equals("07") && !fechapartes[0].equals("08") && !fechapartes[0].equals("09")) {
 			fechacorrecta= "0" + String.valueOf(fechapartes[0]) +"/"+String.valueOf(fechapartes[1]) + "/"+String.valueOf(fechapartes[2]);
 			return fechacorrecta;
-		}else if(Integer.valueOf(fechapartes[0])>=10 && Integer.valueOf(fechapartes[1])<10) {
+		}else if(Integer.valueOf(fechapartes[0])>=10 && Integer.valueOf(fechapartes[1])<10 && !fechapartes[1].equals("01") && !fechapartes[1].equals("02") && !fechapartes[1].equals("03") && !fechapartes[1].equals("04") && !fechapartes[1].equals("05") && !fechapartes[1].equals("06") && !fechapartes[1].equals("07") && !fechapartes[1].equals("08") && !fechapartes[1].equals("09")) {
 			fechacorrecta=String.valueOf(fechapartes[0]) +"/"+ "0"+String.valueOf(fechapartes[1]) + "/"+String.valueOf(fechapartes[2]);
 			return fechacorrecta;
 		}else {
@@ -293,11 +320,10 @@ public class App {
 		            int f1 = Integer.parseInt(partes[2] + partes[1] + partes[0]);
 		            int f2 = Integer.parseInt(partes2[2] + partes2[1] + partes2[0]);
 
-		            if(f2 <= f1) {
+		            if(f2 <f1) {
 		                String[] aux = newMatriz[k];
 		                newMatriz[k] = newMatriz[j];
 		                newMatriz[j] = aux;
-		                n = j;
 		            }
 			}
 			
