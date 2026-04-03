@@ -1,6 +1,8 @@
 package tallerPOO1;
 import java.util.*;
 import java.io.*;
+//Nombre: Fernando Javier Lincopan Araya
+//Rut: 21.860.800-0 
 public class App {
 	
 	public static String[][] matrizUsuario;
@@ -72,6 +74,33 @@ public class App {
 			break;
 		
 		case "2":
+			System.out.println("\r\n"+"Bienvenido al menu de analisis!");
+			String menuR= "";
+			while(!menuR.equals("5")) {
+				System.out.println("\r\n"+"Que deseas realizar?\r\n"+ "\r\n"+ "1) Actividad más realizada\r\n"+ "2) Actividad más realizada por cada usuario\r\n"+ "3) Usuario con mayor procrastinacion\r\n"+ "4) Ver todas las actividades\r\n"+ "5) Salir");
+				System.out.print(">>> ");
+				menuR= respuesta.nextLine();
+				switch(menuR) {
+				case "1":
+					eleccionAnalisis1();
+					break;
+				case "2":
+					eleccionAnalisis2();
+					break;
+				case "3":
+					eleccionAnalisis3();
+					break;
+				case "4":
+					eleccionAnalisis4();
+					break;
+				case "5":
+					System.out.println("\r\n"+"Cerrando el menu de analisis."+"\r\n");
+					break;
+				default:
+					System.out.println("\r\n"+"seleccione una opcion valida.");
+					break;
+				}
+			}
 			break;
 			
 		case "3": 
@@ -79,8 +108,7 @@ public class App {
 			break;	
 			
 		default:
-			System.out.println("\r\n"+"seleccione una opcion valida."+"\r\n");
-	
+			System.out.println("\r\n"+"seleccione una opcion valida.");
 			break;		
 			}
 		
@@ -439,18 +467,21 @@ public class App {
 		}catch(NumberFormatException e) {
 			System.out.println("\r\n"+"Error: La cadena no es un número entero válido.");
 		}
-		System.out.print("\r\n"+ "Actividad borrada con exito!");
+		System.out.println("\r\n"+ "Actividad borrada con exito!");
 		return newMatriz;
 	}
 		
 	public static void eleccionUsuario4(String usu) {
 		System.out.print("\r\n"+ "Ingrese nueva contraseña: ");
 		String contraN1= respuesta.nextLine();
-		System.out.print("\r\n"+ "Confirme la nueva contraseña: ");
+		System.out.print("Confirme la nueva contraseña: ");
 		String contraN2= respuesta.nextLine();
 		if(contraN1.equals(contraN2)) {
 			cambiarContraseña(usu, contraN1);
+		}else {
+			System.out.println("\r\n"+"Error: la contraseñas no coincide.");
 		}
+		
 	}
 	
 	public static void cambiarContraseña(String usu, String contraseña) {
@@ -458,13 +489,188 @@ public class App {
 			if(usu.equals(matrizUsuario[i][0]) && matrizUsuario[i][0]!=null) {
 				matrizUsuario[i][1]=contraseña;
 				System.out.println("\r\n"+"Contraseña modificada con exito!");
-			}else {
-				System.out.println("\r\n"+"Error: la contraseñas no coincide.");
 			}
-			
- 			
 		}
 	}
 	
+	public static void eleccionAnalisis1() {
+		String[] listaAnalisisGeneral= analisisGeneral();
+		System.out.println("\r\n"+"Actividad más realizada por:\r\n");
+		System.out.println("* "+listaAnalisisGeneral[0]+" -> con "+listaAnalisisGeneral[1]+" horas registradas");
+		
+		
+	}
+	
+	public static String[] analisisGeneral(){
+		String[] listaAnalisisGeneral= new String[2];
+		String[][] matrizAnalisisRegistros= new String[1][2];
+		for(int i=0;i<matrizRegistros.length;i++) {
+			if(i!=0) {
+				if(existeEnMatriz(matrizAnalisisRegistros, matrizRegistros[i][3])) {
+					for (int k = 0; k < matrizAnalisisRegistros.length; k++) {
+				        if (matrizAnalisisRegistros[k][0] != null && matrizAnalisisRegistros[k][0].equals(matrizRegistros[i][3])) {
+				            String valor=  String.valueOf(Integer.valueOf(matrizAnalisisRegistros[k][1])+Integer.valueOf(matrizRegistros[i][2])) ;
+				            matrizAnalisisRegistros[k][1]=valor ; 
+				        }
+				        
+					}
+				}else {
+					String[][] newmatrizN= new String[matrizAnalisisRegistros.length+1][2];
+					for(int z=0;z<matrizAnalisisRegistros.length;z++) {
+						newmatrizN[z][0]= matrizAnalisisRegistros[z][0];
+						newmatrizN[z][1]= matrizAnalisisRegistros[z][1];
+					}
+					newmatrizN[newmatrizN.length-1][0]=matrizRegistros[i][3]; 
+					newmatrizN[newmatrizN.length-1][1]=matrizRegistros[i][2];
+					matrizAnalisisRegistros=newmatrizN;
+				}
+			}else {
+				matrizAnalisisRegistros[i][0]= matrizRegistros[i][3];
+				matrizAnalisisRegistros[i][1]= matrizRegistros[i][2]; 
+			}
+			
+			
+		
+		}
+		for(int x=0;x<matrizAnalisisRegistros.length-1;x++) {
+			for(int y=x+1;y<matrizAnalisisRegistros.length;y++) {
+				if(Integer.valueOf(matrizAnalisisRegistros[x][1])<Integer.valueOf(matrizAnalisisRegistros[y][1])) {
+					String aux1= matrizAnalisisRegistros[x][0];
+					String aux2= matrizAnalisisRegistros[x][1];
+					matrizAnalisisRegistros[x][0]= matrizAnalisisRegistros[y][0];
+					matrizAnalisisRegistros[x][1]= matrizAnalisisRegistros[y][1];
+					matrizAnalisisRegistros[y][0]= aux1;
+					matrizAnalisisRegistros[y][1]= aux2;
+				}
+			}
+		}
+		listaAnalisisGeneral[0]=matrizAnalisisRegistros[0][0];
+		listaAnalisisGeneral[1]=matrizAnalisisRegistros[0][1];
+		return listaAnalisisGeneral;
+	}
+	
+	public static void eleccionAnalisis2(){
+		String[][] matrizAnalisisIndividual= analisisIndividual();
+		System.out.println("\r\n"+"Actividades mas realizadas por cada usuario:\r\n");
+		for(int i=0;i<matrizAnalisisIndividual.length;i++) {
+			System.out.println("* "+matrizAnalisisIndividual[i][0]+" -> "+matrizAnalisisIndividual[i][1]+" -> con "+matrizAnalisisIndividual[i][2]+" horas registradas");
+		}
+	}
+	
+	public static String[][] analisisIndividual(){
+		String[][] listaAnalisisIndividual= new String[matrizUsuario.length][3];
+		for(int i=0;i<matrizUsuario.length;i++) {
+			int nveces=0;
+			String[][] matrizActividadM= new String[1][2];
+			String usuarioN= matrizUsuario[i][0];
+			for(int j=0;j<matrizRegistros.length;j++) {
+				if(usuarioN.equals(matrizRegistros[j][0])) {
+					nveces++;
+					if(nveces!=1) {
+						if(existeEnMatriz(matrizActividadM,matrizRegistros[j][3])) {
+							for (int k = 0; k < matrizActividadM.length; k++) {
+						        if (matrizActividadM[k][0] != null && matrizActividadM[k][0].equals(matrizRegistros[j][3])) {
+						            String valor=  String.valueOf(Integer.valueOf(matrizActividadM[k][1])+Integer.valueOf(matrizRegistros[j][2])) ;
+						        	matrizActividadM[k][1]=valor ; 
+						        }
+						        
+							}
+						}else {
+							String[][] newmatrizN= new String[matrizActividadM.length+1][2];
+							for(int z=0;z<matrizActividadM.length;z++) {
+								newmatrizN[z][0]= matrizActividadM[z][0];
+								newmatrizN[z][1]= matrizActividadM[z][1];
+							}
+							newmatrizN[newmatrizN.length-1][0]=matrizRegistros[j][3]; 
+							newmatrizN[newmatrizN.length-1][1]=matrizRegistros[j][2];
+							matrizActividadM=newmatrizN;
+						}
+					}else {
+						matrizActividadM[0][0]=matrizRegistros[j][3]; 
+						matrizActividadM[0][1]=matrizRegistros[j][2]; 
+					}
+				}	
+			}
+			for(int x=0;x<matrizActividadM.length-1;x++) {
+				for(int y=x+1;y<matrizActividadM.length;y++) {
+					if(Integer.valueOf(matrizActividadM[x][1])<Integer.valueOf(matrizActividadM[y][1])) {
+						String aux1= matrizActividadM[x][0];
+						String aux2= matrizActividadM[x][1];
+						matrizActividadM[x][0]= matrizActividadM[y][0];
+						matrizActividadM[x][1]= matrizActividadM[y][1];
+						matrizActividadM[y][0]= aux1;
+						matrizActividadM[y][1]= aux2;
+					}
+				}
+			}
+		    
+			listaAnalisisIndividual[i][0]= usuarioN;
+			listaAnalisisIndividual[i][1]= matrizActividadM[0][0];
+			listaAnalisisIndividual[i][2]= matrizActividadM[0][1];
+			
+		}
+		return listaAnalisisIndividual;
+	}
+	
+	public static boolean existeEnMatriz(String[][] matriz, String valor) {
+	    for (int i = 0; i < matriz.length; i++) {
+	        for (int j = 0; j < matriz[i].length; j++) {
+	            if (matriz[i][j] != null && matriz[i][j].equals(valor)) {
+	                return true;
+	            }
+	        }
+	    }
+	    return false;
+	}
+	
+	public static void eleccionAnalisis3() {
+		String[] listaAnalisisOsioMayor=personasMayorOsio();
+		System.out.println("\r\n"+"Persona con mas horas de osio:"+"\r\n"+"* "+listaAnalisisOsioMayor[0]+" -> con "+listaAnalisisOsioMayor[1]+" horas registradas");
+	}
+	
+	public static String[] personasMayorOsio(){
+		String[] listaAnalisisOsioMayor= new String[2];
+		String[][] MatrizUsu= new String[matrizUsuario.length][2];
+		for(int i=0;i<matrizUsuario.length;i++) {
+			int nveces=0;
+			String usuarioN= matrizUsuario[i][0];
+			for(int j=0;j<matrizRegistros.length;j++) {
+				if(usuarioN.equals(matrizRegistros[j][0])) {
+					nveces++;
+					if(nveces!=1){
+						int valor= Integer.valueOf(MatrizUsu[i][1])+Integer.valueOf(matrizRegistros[i][2]);
+						MatrizUsu[i][1]=String.valueOf(valor); 
+					}else {
+						MatrizUsu[i][0]=usuarioN;
+						MatrizUsu[i][1]=matrizRegistros[i][2];
+					}
+				}
+			}
+		    
+		}
+		for(int x=0; x<MatrizUsu.length-1;x++) {
+			for(int y=x+1;y<MatrizUsu.length;y++) {
+				if(Integer.valueOf(MatrizUsu[x][1])<Integer.valueOf(MatrizUsu[y][1])) {
+					String aux1= MatrizUsu[x][0];
+					String aux2= MatrizUsu[x][1];
+					MatrizUsu[x][0]= MatrizUsu[y][0];
+					MatrizUsu[x][1]= MatrizUsu[y][1];
+					MatrizUsu[y][0]= aux1;
+					MatrizUsu[y][1]= aux2;
+				}
+			}
+		}
+		listaAnalisisOsioMayor[0]=MatrizUsu[0][0];
+		listaAnalisisOsioMayor[1]=MatrizUsu[0][1];
+		return listaAnalisisOsioMayor;
+	}
+	
+	public static void eleccionAnalisis4() {
+		for(int i=0;i<matrizRegistros.length;i++) {
+			System.out.println("* "+matrizRegistros[i][1]+" -> "+matrizRegistros[i][0]+" -> "+matrizRegistros[i][3]+" -> con "+matrizRegistros[i][2]+" horas registradas");
+		}
+		
+		
+	}
 	
 }
