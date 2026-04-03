@@ -493,6 +493,22 @@ public class App {
 		}catch(NumberFormatException e) {
 			System.out.println("\r\n"+"Error: La cadena no es un número entero válido.");
 		}
+		for(int j=0;j<newMatriz.length-1;j++) {
+			for(int k=j+1;k<newMatriz.length;k++) {
+				  String[] partes = newMatriz[j][1].split("/");
+		            String[] partes2 = newMatriz[k][1].split("/");
+
+		            int f1 = Integer.parseInt(partes[2] + partes[1] + partes[0]);
+		            int f2 = Integer.parseInt(partes2[2] + partes2[1] + partes2[0]);
+
+		            if(f2<f1) {
+		                String[] aux = newMatriz[k];
+		                newMatriz[k] = newMatriz[j];
+		                newMatriz[j] = aux;
+		            }
+			}
+			
+		}
 		System.out.println("\r\n"+ "Actividad borrada con exito!");
 		return newMatriz;
 	}

@@ -6,7 +6,7 @@ Catalina;02/03/2026;1;Ver reels
 Estefania;02/03/2026;2;Ver mlp
 Martin;03/03/2026;5;ser therian
 Catalina;03/03/2026;5;ser Batman por las noches
-Estefania;03/03/2026;4;investigar las cutiemarks
+Estefania;03/03/2026;4;investigar las cutiemarks 
 Martin;04/03/2026;1;Ver jujutsu
 Catalina;04/03/2026;3;estudiar
 Estefania;04/03/2026;1;Ver reels
