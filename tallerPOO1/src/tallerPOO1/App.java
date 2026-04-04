@@ -440,9 +440,11 @@ public class App {
 		}
 		System.out.print(">>> ");
 		String indice= respuesta.nextLine();
-		if(numeroCorrecto(indice)){
+		if(numeroCorrecto(indice) && Integer.valueOf(indice)<=matrizRegistros.length){
 		matrizRegistros= borrarRegistros(indice, usu);
 		
+		}else {
+			System.out.println("\r\n"+"Error: La cadena no es un número entero válido.");
 		}
 		
 		
