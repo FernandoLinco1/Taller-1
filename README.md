@@ -14,7 +14,7 @@ Este proyecto solo ocupara un paquete y una sola clase: App.
 Al iniciar el programa te dara 3 opciones a elegir: 1. Menu de Usuarios 2. Menu de Analisis 3) Salir, 
 (para seleccionar una opcion debe elegir un numero, esto aplica para todas las elecciones de menus).
 
-1. Menu de Usuarios: Al seleccionar esta opcion deberas ingresar el usuario y la contraseña para verificar
+(1)Menu de Usuarios: Al seleccionar esta opcion deberas ingresar el usuario y la contraseña para verificar
 el ingreso a el menu del respectivo usuario, el menu te dara 5 opciones: 1, Registrar actividad: deberas ingresar la fecha,
 las horas de osio y la actividad para registrarla en la archivo, (Importante: para guardar todas las modificaciones a debes cerrar el programa correctamente). 
 
@@ -29,6 +29,8 @@ despues te dara a elegir: 0. salir 1. fecha 2. horas de osio 3. actividad, se ag
 
 5. Salir.
 
-2. Menu Analisis: al seleccionar esta opcion te mostrara distintas opciones: 1. Actividad más realizada
+(2)Menu Analisis: al seleccionar esta opcion te mostrara distintas opciones: 1. Actividad más realizada
 2. Actividad más realizada por cada usuario 3. Usuario con mayor procastinacion
 4. Ver todas las actividades 5. Salir.
+
+(3) Cerrar sistema.
