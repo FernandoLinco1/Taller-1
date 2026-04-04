@@ -11,23 +11,23 @@ el usuario con mayor procastinacion, todas las actividades y cerrar el menu.
 
 Este proyecto solo ocupara un paquete y una sola clase: App.
 
-Al iniciar el programa te dara 3 opciones a elegir: 1) Menu de Usuarios 2) Menu de Analisis 3) Salir, 
+Al iniciar el programa te dara 3 opciones a elegir: 1. Menu de Usuarios 2. Menu de Analisis 3) Salir, 
 (para seleccionar una opcion debe elegir un numero, esto aplica para todas las elecciones de menus).
 
-1) Menu de Usuarios: Al seleccionar esta opcion deberas ingresar el usuario y la contraseña para verificar
-el ingreso a el menu del respectivo usuario, el menu te dara 5 opciones: 1) Registrar actividad: deberas ingresar la fecha,
+1. Menu de Usuarios: Al seleccionar esta opcion deberas ingresar el usuario y la contraseña para verificar
+el ingreso a el menu del respectivo usuario, el menu te dara 5 opciones: 1, Registrar actividad: deberas ingresar la fecha,
 las horas de osio y la actividad para registrarla en la archivo, (Importante: para guardar todas las modificaciones a debes cerrar el programa correctamente). 
 
-2) Modificar actividad: te mostrara todas las actividades del usuario para que seleccionar cual modificar
+2. Modificar actividad: te mostrara todas las actividades del usuario para que seleccionar cual modificar
 (para seleccionar una opcion debe elegir un numero, la opcion "0" es para salir de esta eleccion)
-despues te dara a elegir: 0) salir 1) fecha 2) horas de osio 3) actividad, se agrega tu modificacion a el archivo.
+despues te dara a elegir: 0. salir 1. fecha 2. horas de osio 3. actividad, se agrega tu modificacion a el archivo.
 
-3) Eliminar actividad: te mostrara todas las actividades del usuario para que seleccionar cual borrar del archivo
+3. Eliminar actividad: te mostrara todas las actividades del usuario para que seleccionar cual borrar del archivo
 (para seleccionar una opcion debe elegir un numero, la opcion "0" es para salir de esta eleccion).
  
-4) Cambiar contraseña: escribiras la nueva contraseña y una confirmacion, si la verificacion es correcta se guardara la nueva contraseña en el archivo.
+4. Cambiar contraseña: escribiras la nueva contraseña y una confirmacion, si la verificacion es correcta se guardara la nueva contraseña en el archivo.
 
-5) Salir.
+5. Salir.
 
 2) Menu Analisis: al seleccionar esta opcion te mostrara distintas opciones: 1) Actividad más realizada
 2) Actividad más realizada por cada usuario
