@@ -452,46 +452,27 @@ public class App {
 		String[][] newMatriz= new String[matrizRegistros.length-1][4];
 		try {
 		int indice= Integer.valueOf(n); 
-		int j=0;
+		int k=0;
 		int x=0;
-		for(int i=0;i<matrizRegistros.length;i++) {
-			if(usuario.equals(matrizRegistros[i][0])) {
-				j++;
-				if(j==indice) {
-					x=i;
-				}
-				if(j!=indice && i!=matrizRegistros.length-1) {
-				newMatriz[i][0]= matrizRegistros[i][0];
-				newMatriz[i][1]= matrizRegistros[i][1];
-				newMatriz[i][2]= matrizRegistros[i][2];
-				newMatriz[i][3]= matrizRegistros[i][3];
-				}else if(j!=indice && i==matrizRegistros.length-1) {
-					newMatriz[x][0]= matrizRegistros[i][0];
-					newMatriz[x][1]= matrizRegistros[i][1];
-					newMatriz[x][2]= matrizRegistros[i][2];
-					newMatriz[x][3]= matrizRegistros[i][3];
-					
-				}
-			}
-			if(!usuario.equals(matrizRegistros[i][0]) &&  i!=matrizRegistros.length-1){
-				newMatriz[i][0]= matrizRegistros[i][0];
-				newMatriz[i][1]= matrizRegistros[i][1];
-				newMatriz[i][2]= matrizRegistros[i][2];
-				newMatriz[i][3]= matrizRegistros[i][3];
-			}else if(!usuario.equals(matrizRegistros[i][0]) &&  i==matrizRegistros.length-1) {
-				newMatriz[x][0]= matrizRegistros[i][0];
-				newMatriz[x][1]= matrizRegistros[i][1];
-				newMatriz[x][2]= matrizRegistros[i][2];
-				newMatriz[x][3]= matrizRegistros[i][3];
-				
-				
-			}
-			
-		
+		for (int i = 0; i < matrizRegistros.length; i++) {
+
+		    if (matrizRegistros[i][0].equals(usuario)) {
+		        x++;
+
+		        if (x == indice) {
+		            continue;
+		        }
+		    }
+
+		    newMatriz[k] = matrizRegistros[i];
+		    k++;
 		}
 		
 		}catch(NumberFormatException e) {
 			System.out.println("\r\n"+"Error: La cadena no es un número entero válido.");
+		}
+		for(int d=0;d<newMatriz.length;d++) {
+			System.out.println(newMatriz[d][0]+newMatriz[d][1]+newMatriz[d][2]+newMatriz[d][3]);
 		}
 		for(int j=0;j<newMatriz.length-1;j++) {
 			for(int k=j+1;k<newMatriz.length;k++) {
