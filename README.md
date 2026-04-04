@@ -30,8 +30,5 @@ despues te dara a elegir: 0. salir 1. fecha 2. horas de osio 3. actividad, se ag
 5. Salir.
 
 
-2. Menu Analisis: al seleccionar esta opcion te mostrara distintas opciones: 1. Actividad más realizada
-2. Actividad más realizada por cada usuario
-3) Usuario con mayor procastinacion
-4) Ver todas las actividades
-5) Salir
+2. Menu Analisis: al seleccionar esta opcion te mostrara distintas opciones: 1. Actividad más realizada 2. Actividad más realizada por cada usuario
+
