@@ -1,8 +1,8 @@
 package tallerPOO1;
-import java.util.*;
-import java.io.*;
 //Nombre: Fernando Javier Lincopan Araya
 //Rut: 21.860.800-0 
+import java.util.*;
+import java.io.*;
 public class App {
 	
 	public static String[][] matrizUsuario;
